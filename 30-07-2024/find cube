@@ -1,0 +1,17 @@
+2.To find cube of numbers
+
+Pseudo:
+input num
+cube = numb * num * num
+Print cube
+
+Pseudo:routine
+  function FindCube(num)
+    cube=num * num * num
+    return cube
+
+Pseudo:routine test
+   procedure TestFindCube()
+   input number
+   cube =  FindCube(numb)
+   print cube
