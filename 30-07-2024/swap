@@ -1,0 +1,25 @@
+4.swap two numbers
+
+Pseudo:
+input num1
+input num2  
+temp=num1
+num1=num2
+num2=temp
+print num1,num2 
+
+Pseudo:routine
+
+Function SwapNumbers(num1, num2)
+    temp = num1
+    num1 = num2
+    num2 = temp
+    return num1, num2
+
+Pseudo:routine test:
+
+Procedure TestSwapNumbers()
+    input num1
+    input num2
+    (num1, num2) = SwapNumbers(num1, num2)
+    Print  num1, num2
