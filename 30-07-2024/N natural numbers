@@ -1,0 +1,14 @@
+Pseudo:
+  input num
+   for i = 1 to num
+    print i
+
+Pseudo:routine
+  function PrintNaturalNumbers(num)
+    for i = 1 to number
+        Print i
+    
+Pseudo:routine test
+   procedure TestPrintNaturalNumbers()
+    input num
+    PrintNaturalNumbers(number)
