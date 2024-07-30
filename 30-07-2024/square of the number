@@ -1,0 +1,15 @@
+Pseudo:
+   input num
+   square = num * num
+   print square
+
+Pseudo:routine
+   function FindSquare(num)
+    square = num* num
+    return square
+
+Pseudo:routine test
+   procedure TestFindSquare()
+   intput num
+   square = FindSqaure(num)
+   print square 
