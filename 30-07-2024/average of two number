@@ -1,0 +1,20 @@
+1.To find the average of two number
+
+Enter the first number 1
+Enter the second number 2
+sum= number1 + number2
+average = sum / 2
+print average
+
+Pseudo:routine
+  function FindSum(number1,number2)
+    sum=number1 + number2
+    average = sum / 2
+    return average
+
+Pseudo:routine test
+ procedure TestFindSum()
+ input number1
+ input number2
+ average = (number1 + number2) / 2
+ Print average
