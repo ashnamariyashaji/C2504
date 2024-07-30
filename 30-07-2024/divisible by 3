@@ -1,0 +1,24 @@
+5 .to check nubmer is divisible by3
+
+Pseudo:
+input num
+if num % 3 == 0 Then
+    Print "num is divisible by 3"
+else
+    Print "num is not divisible by 3"
+
+Pseudo:routine
+   Function IsDivisibleBy3(num)
+    if num % 3 == 0 Then
+        return True
+    else
+        return False
+
+Pseudo:routine test:
+ procedure TestIsDivisibleBy3()
+    input num
+    result = IsDivisibleBy3(num)
+    if result Then
+        Print "num is divisible by 3"
+    else
+        Print "num is not divisible by 3"
