@@ -1,0 +1,27 @@
+ function SuggestMaintenance(serviceOption->char) -> string
+        string suggestion;
+        switch serviceOption
+            case 'O':
+                suggestion = "Change Oil and Replace Oil Filter"
+                break
+            case 'T':
+                suggestion = "Rotate Tire and align them properly"
+                break
+            case 'B':
+                suggestion = "Inspect the brake and replace them if necessary"
+                break
+            case 'A':
+                suggestion = "Battery Check and Replace them"
+                break
+            default: 
+                suggestion = "Some other reason"
+                break 
+        end switch 
+        return suggestion
+    function TestSuggestMaintenance() -> None       marks: 100
+        Input serviceOption 
+        suggestion = SuggestMaintenance(serviceOption)
+        print suggestion        
+    function TestSuggestMaintenance() -> None       marks: 99
+        Input serviceOption 
+        print SuggestMaintenance(serviceOption)
