@@ -1,0 +1,6 @@
+int[] array 
+int max = array[0]   
+for int i = 1 to length - 1
+    if array[i] > max
+        max = array[i]
+print "Maximum value: " + max
