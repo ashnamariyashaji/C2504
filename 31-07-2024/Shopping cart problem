@@ -1,0 +1,47 @@
+Shopping Cart Problem
+
+		double discount = 80;
+    double discountrate = 0.10;
+		double total cost=0
+		int[]shoppingcart= {item1,item2,item3}
+		For each item in items{
+			total cost = total cost+ item.cost
+		}
+		check if total cost> discountrange
+
+		double discount amount= totalcost*discountrate
+		totalcost=totalcost-discountamount
+		return total cost
+
+                                                 
+MODIFIED
+	
+BEGIN
+    DECLARE items AS ARRAY OF FLOAT
+    DECLARE total AS FLOAT
+    DECLARE discount AS FLOAT
+    DECLARE finalTotal AS FLOAT
+    DECLARE threshold AS FLOAT
+    DECLARE discountRate AS FLOAT
+ 
+    SET items = [item1, item2, item3, ..., itemN]  // Assume item1, item2, etc., are the prices of the items
+    SET total = 0.0
+    SET threshold = 100.0  // Example threshold amount for discount
+    SET discountRate = 0.10  // Example discount rate of 10%
+ 
+    FOR EACH item IN items
+        total = total + item
+    END FOR
+ 
+    IF total > threshold THEN
+        discount = total * discountRate
+    ELSE
+        discount = 0
+    END IF
+ 
+    finalTotal = total - discount
+ 
+    PRINT "Total before discount: ", total
+    PRINT "Discount applied: ", discount
+    PRINT "Total after discount: ", finalTotal
+END
