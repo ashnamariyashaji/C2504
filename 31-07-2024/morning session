@@ -10,7 +10,7 @@
             print 'You are an adult.'
         end if
 
-2.if..else :
+2.if else :
   To print the is adult or not based his/her age. 
 function TestIsAdultNotAdult()
         Input age 
