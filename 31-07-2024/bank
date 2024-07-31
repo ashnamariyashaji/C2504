@@ -1,0 +1,37 @@
+double balance = 0.0
+double withdrawAmount = 0.0
+double depositAmount = 0.0
+function deposit(double amount)
+    if amount > 0
+        balance = balance + amount
+        print "Deposited: " + amount
+
+function withdraw(double amount)
+    if amount > 0
+        if amount <= balance
+            balance = balance - amount
+            print "Withdrawn: " + amount
+        else
+            print "Error: Insufficient amount"
+
+
+function checkBalance()
+    print "Current balance: " + balance
+
+
+print "Select operation (deposit, withdraw, check balance): "
+string operation
+
+input operation
+if operation = "deposit"
+    print "Enter amount to deposit"
+    input depositAmount
+    deposit(depositAmount)
+else if operation = "withdraw"
+    print "Enter amount to withdraw"
+    input withdrawAmount
+    withdraw(withdrawAmount)
+else if operation = "check balance"
+    checkBalance()
+else
+    print "Error: Invalid operation"
