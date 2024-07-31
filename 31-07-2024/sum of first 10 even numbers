@@ -1,0 +1,22 @@
+
+sum of first 10 even numbers
+
+start
+// Initialize variables
+int count = 0       // Counter for the number of even numbers
+int number = 2      // First even number
+int sum = 0         // Variable to hold the sum of even numbers
+
+
+while count < 10
+                         
+    sum = sum + number  // Add the current even number to the sum
+    
+    count = count + 1      // Increment the count
+    
+    number = number + 2     // Move to the next even number
+
+// Print the sum
+print "Sum of the first 10 even numbers: " + sum
+
+end
