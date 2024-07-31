@@ -1,0 +1,16 @@
+If the mark is greater than 40, print Pass otherwise print Fail 
+
+Input mark
+function IsMarkGreaterThan40(mark): -> boolean
+    return (mark > 40)
+
+function IsMarkGreaterThan40(mark): -> boolean
+    isMarkGreaterThan40 = (mark > 40)
+    return isMarkGreaterThan40
+
+function TestIsMarkGreaterThan40(): -> None
+    Input mark 
+    if IsMarkGreaterThan40(mark)
+        print "pass" 
+    else 
+        print "fail" 
