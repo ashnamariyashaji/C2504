@@ -1,0 +1,8 @@
+check tumour
+                is cancerous if  malignant or not cancerous if benign
+            Note: tumour is string of text either malignant or benign
+
+    to check tumour
+function IsCancerous(tumour->string): -> boolean
+    isCancerous = (tumour == "malignant")
+    return isCancerous
