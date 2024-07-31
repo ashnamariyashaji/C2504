@@ -10,7 +10,17 @@
             print 'You are an adult.'
         end if
 
-2.Take a num, if num greater than 5  print "num is greater than 5"
+2.if..else :
+  To print the is adult or not based his/her age. 
+function TestIsAdultNotAdult()
+        Input age 
+        if(IsAdult(age)) 
+            print 'You are an adult.'
+        else 
+            print 'You are not an adult.'
+        end if
+
+3.Take a num, if num greater than 5  print "num is greater than 5"
 ----------------------------------------------------------------------
 function IsNumberberGreaterThan5(num)  
         isNumber = (num > 5)
@@ -23,7 +33,7 @@ function IsNumberberGreaterThan5(num)
         end if
 
 
-3.To print 'number is positive if num > 0
+4.To print 'number is positive if num > 0
 it should not print if not positive
 --------------------------------------------------------
 function IsPositive(num)  
@@ -36,7 +46,7 @@ function IsPositive(num)
             print 'number is positive.'
         end if
 
-4.if temp > 25, print it is hot outside.
+5.if temp > 25, print it is hot outside.
 --------------------------------------------------
 function IsHot(temp)  
         isHot = (temp > 25)
@@ -46,16 +56,6 @@ function IsHot(temp)
         Input temp 
         if(IsHot(temp)) 
             print 'it is hot outside.'
-        end if
-
-5.if..else :
-  To print the is adult or not based his/her age. 
-function TestIsAdultNotAdult()
-        Input age 
-        if(IsAdult(age)) 
-            print 'You are an adult.'
-        else 
-            print 'You are not an adult.'
         end if
 
 6.Input mark, if IsMarkGreaterThan40(mark) 
