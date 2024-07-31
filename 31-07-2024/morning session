@@ -11,6 +11,7 @@
         end if
 
 2.if else :
+------------------
   To print the is adult or not based his/her age. 
 function TestIsAdultNotAdult()
         Input age 
@@ -109,7 +110,7 @@ function TestIsSalary()
 9.check tumour 
    is cancerous if  malignant  or not cancerous if benign
    tumour is string of text either malignant or benign
-
+--------------------------------------------------
 function IsCancerous(tumour->string)
     isCancerous = (tumour == "malignant")
     return isCancerous
@@ -136,7 +137,7 @@ function IsCancerous(tumour->string)
 
 
 11. check for car maintenance
-
+----------------------------------------
     function SuggestMaintenance(serviceOption) 
         string suggestion;
         switch serviceOption
