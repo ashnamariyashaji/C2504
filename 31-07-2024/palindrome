@@ -1,0 +1,13 @@
+input str
+  set reversed_str = "" 
+  set length = length of str
+
+  for i from length 
+    reversed_str = reversed_str + str[i]
+  endfor
+
+  if str = reversed_str
+    print "The string is a palindrome"
+  else
+    print "The string is not a palindrome"
+  endif
