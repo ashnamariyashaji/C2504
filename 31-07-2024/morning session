@@ -1,4 +1,4 @@
-1. To print the one is adust based his/her age 
+1. To print the one is adult based his/her age 
 -----------------------------------------------------------
     function IsAdult(age) 
         isAdult = (age >= 18)
