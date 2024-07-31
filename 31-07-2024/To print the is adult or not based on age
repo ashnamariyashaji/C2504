@@ -1,0 +1,9 @@
+To print the is adult or not based on age.
+
+function TestIsAdultNotAdult(): -> None
+        Input age 
+        if(IsAdult(age)) 
+            print 'You are an adult.'
+        else 
+            print 'You are not an adult.'
+        end if
