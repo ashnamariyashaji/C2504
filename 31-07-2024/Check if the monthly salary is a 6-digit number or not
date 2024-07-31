@@ -1,0 +1,10 @@
+function IsSalary(Salary)
+   IsSalary = (salary>>= 100000 and salary <= 999999)
+   return IsSalary
+
+function TestIsSalary()
+   input salary
+   if IsSalary(Salary)
+   print("6 digit salary")
+   else
+   print("not 6 digit salary)
