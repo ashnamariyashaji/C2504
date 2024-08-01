@@ -31,7 +31,7 @@ function TestIsDoctorSalaryMin6DigitsOrNot()
 
       
       
-C# CODE
+C# code
 
 class IsDoctorSalaryMin6Digits
 {
