@@ -1,0 +1,33 @@
+class TestIsDoctorSalaryMin6Digits
+{
+   
+    static bool IsDoctorSalaryMin6Digits(int doctorSalary)
+    {
+        int salary = doctorSalary;
+
+        int count = 0;
+        while (salary > 0)
+        {
+            int digit = salary % 10;
+            count += 1;
+            salary = salary / 10;
+        }
+
+        return count >= 6;
+    }
+    
+    static void TestIsDoctorSalaryMin6Digits()
+    {
+        int doctorSalary = int.Parse(Console.ReadLine());
+        if( IsDoctorSalaryMin6Digits(doctorSalary) )
+        {
+            Console.WriteLine("Doctor gets 6 digits salary");
+        }
+    }
+    static void Main(string[] args) 
+    {
+        TestIsDoctorSalaryMin6Digits();
+        Console.WriteLine("Press any key to contine...");
+        Console.ReadKey();
+    }        
+}
