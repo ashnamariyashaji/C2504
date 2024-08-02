@@ -1,0 +1,52 @@
+
+q9.PrintNumTriangleMirroredRightAngle using do while loop
+
+    class Q09
+        {
+            static void PrintNumTriangleMirroredRightAngle(int N)
+            {
+                int I = 1;
+                do
+                {
+                    int J = 1;
+
+                    // Print spaces
+                    do
+                    {
+                        if (J <= N - I)
+                            Console.Write("  "); 
+                        J++;
+                    } while (J <= N - I);
+
+                    // Print numbers
+                    J = 1;
+                    do
+                    {
+                        if (J <= I)
+                            Console.Write($"{J} "); // num and space
+                        J++;
+                    } while (J <= I);
+
+                    Console.WriteLine(); // new line
+                    I++;
+                } while (I <= N);
+            }
+
+            static void TestPrintNumTriangleMirroredRightAngle()
+            {
+                Console.Write("Enter number of lines:");
+                int N = int.Parse(Console.ReadLine());
+                PrintNumTriangleMirroredRightAngle(N);
+            }
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine("-----TestPrintNumTriangleMirroredRightAngle-----");
+                TestPrintNumTriangleMirroredRightAngle();
+                Console.WriteLine("-----End TestPrintNumTriangleMirroredRightAngle-----");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+    }
+}
