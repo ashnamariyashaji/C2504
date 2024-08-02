@@ -1,0 +1,58 @@
+P4. print series 0, 1, 1, 2, 3, 5, 8, 13, ... N terms 
+    Q12: use do..while loop
+
+
+  class Q12
+    {
+    static void PrintFibonacciSeries(int numOfTerms)
+            {
+                int first = 0, second = 1, next;
+                int count = 1;
+
+                do
+                {
+                    if (count == 1)
+                    {
+                        Console.Write($"{first} ");
+                    }
+                    else if (count == 2)
+                    {
+                        Console.Write($"{second} ");
+                    }
+                    else
+                    {
+                        next = first + second;
+                        Console.Write($"{next} ");
+                        first = second;
+                        second = next;
+                    }
+                    count++;
+                } while (count <= numOfTerms);
+
+                Console.WriteLine(); // New line after the series
+            }
+
+
+
+            static void TestPrintFibonacciSeries()
+            {
+                Console.Write("Enter number of terms: ");
+                int numOfTerms = int.Parse(Console.ReadLine());
+                Console.Write("Series: ");
+                PrintFibonacciSeries(numOfTerms);
+                Console.WriteLine();
+            }
+
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine("--------------TestPrintFibonacciSeries...--------------");
+                TestPrintFibonacciSeries();
+                Console.WriteLine("--------------End TestPrintFibonacciSeries...--------------");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+    }
+}
+
