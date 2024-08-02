@@ -1,0 +1,51 @@
+P5. print the N th term in the series 0, 1, 1, 2, 3, 5, 8, 13, ... N terms 
+    Q14: use while loop
+
+     class Q04
+      {            
+        static int GetNthTermFibonacci(int N)
+             {
+               int first = 0, second = 1, term = 0;
+                 int count = 1;
+
+                 while (count <= N)
+                 {
+                     if (count == 1)
+                     {
+                         term = first;
+                     }
+                     else if (count == 2)
+                     {
+                         term = second;
+                     }
+                     else
+                     {
+                         term = first + second;
+                         first = second;
+                         second = term;
+                     }
+                     count++;
+                 }
+
+                 return term;
+       }
+
+            static void TestGetNthTerm_Fibonacci()
+            {
+                Console.Write("Enter the term number (N): ");
+                int N = int.Parse(Console.ReadLine());
+                int nthTerm = GetNthTerm_Fibonacci(N);
+                Console.WriteLine($"Nth term in the Fibonacci series is {nthTerm}");
+            }
+            static void Main(string[] args)
+            {
+                Console.WriteLine("-----TestGetNthTerm_Fibonacci-----");
+                TestGetNthTerm_Fibonacci();
+                Console.WriteLine("-----End TestGetNthTerm_Fibonacci-----");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+    }
+}
+
