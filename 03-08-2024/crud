@@ -1,0 +1,57 @@
+--create db
+CREATE DATABASE trainer_search_db;
+
+
+USE trainer_search_db;
+
+--create table
+  CREATE TABLE trainer( 
+  id integer  primary key identity(1,1),
+  name varchar(255) not null,
+  skill varchar(512) not null,
+  place varchar(126) not null
+
+);
+
+sp_help trainer;
+
+--to display tabel
+SELECT * FROM trainer;
+--insert the values in the table
+INSERT INTO trainer(name, skill, place)VALUES('mahesh','c#','mysore');
+INSERT INTO trainer(name, skill, place)VALUES('gopal', 'c#','trivandrum');
+INSERT INTO trainer(name, skill, place)VALUES('sanjay','management','trivandrum');
+INSERT INTO trainer(name, skill, place)VALUES('mishel','c#','idukki');
+
+---to delete 
+DELETE FROM trainer WHERE id=4;
+DELETE FROM trainer Where id IN (3,4);
+
+SELECT name,skill FROM trainer WHERE id IN(1,2);
+
+
+--update
+UPDATE trainer
+SET skill='wpf and C3'
+WHERE id IN(1,2);
+
+SELECT name,skill FROM trainer WHERE name IN('mahesh','mishel');
+
+SELECT * FROM trainer WHERE id = 1;
+
+--to update name as mahesh(first letter is capital) and places as Mysore
+UPDATE trainer
+SET name = 'Mahesh' , place = 'Mysore' WHERE id = 1;
+
+UPDATE trainer 
+SET name='Mishel',place='Idukki',skill='c# and WPF' WHERE id=5;
+
+--CRUD: create trainer,read trainer,update,delete
+
+/*
+--to drop the tabel
+DROP TABLE trainer;
+
+--to drop the database
+DROP DATABASE trainer_search_db;
+*/
