@@ -1,0 +1,100 @@
+
+--[Neha team]
+
+USE MediConnect_db;
+-- display all Users
+SELECT * FROM Users;
+
+-- display all Patients
+SELECT * FROM Patients;
+
+-- display Users UserID, Username, Role whose Role= 'Doctor'
+SELECT UserID, Username, Role
+FROM Users
+WHERE Role= 'Doctor';
+
+-- display employees PatientID,Name,Gender whose PatientID as 1
+SELECT PatientID, Name, Gender
+FROM Patients
+WHERE PatientID=1;
+
+--To find patients in descending order
+SELECT PatientID, Name, Gender
+FROM Patients
+ORDER BY Name DESC;
+
+
+---Sorting by using ordinal no....for the Condition column
+
+SELECT MedicalHistoryId, PatientId, Condition, DiagnosisDate
+FROM MedicalHistory
+ORDER BY 3 DESC;
+
+
+
+--To find patients having 'C' in their lastname
+SELECT PatientID, Name, Gender
+FROM Patients
+WHERE Name Like '%c';
+
+--To find patients having 'c' in their first name
+SELECT PatientID, Name, Gender
+FROM Patients
+WHERE Name Like 'c%';
+
+
+--To find age
+SELECT '1995-11-10' BIRTH_DATE, getdate() TODAY_DATE, 
+	DATEDIFF(YEAR, '1995-11-10', getdate()) AGE;
+
+---Finding age greater than 37
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) > 37;
+
+---Finding age less than 37
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) < 37;
+
+---Finding age is 37
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) = 37;
+
+---Finding age is not 37
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) <> 37;
+
+
+---Finding age of patients who is either 37 or 32
+
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) IN (37,32);
+
+---Finding age of patients who is Neither 37 or 32
+
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) NOT IN (37,32);
+
+
+---Finding age of patients who is not in between 37 or 42
+
+SELECT   Name,DATEDIFF(YEAR,  Dob, getdate()) AGE
+FROM Patients
+WHERE DATEDIFF(YEAR,  Dob, getdate()) NOT  BETWEEN 37 AND 42;
+
+--To find patients having 'an' in their name
+SELECT PatientID, Name, Gender
+FROM Patients
+WHERE Name LIKE '%AN%';
+
+---Query to Get All Users with the Role of 'doctor'
+SELECT * FROM Users WHERE Role = 'doctor';
+
+--Query to fix 10:00pm as the last appointment time
+SELECT AppointmentId, PatientId, DoctorId, Date, Time,10 as Last_Appointment_Time
+FROM Appointments;
