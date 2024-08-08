@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MY WEB PAGE</title>
+        <style>
+            code{
+                background-color: blueviolet;
+                padding: 3px;
+                border-radius: 5px;
+                color: #0c0a0e;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Heading 1</h1>
+        <H2>Heading 2</H2>
+        <H3>Heading 3</H3>
+        <H4>Heading 4</H4>
+        <H4>Heading 5</H5>
+        <H6>Heading 6</H6>
+        <P>Hello World</P>
+        <hr>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.<wbr> Velit inventore culpa labore architecto est ipsa neque quasi iure quod facere,<br> animi dolore, sunt fugiat sapiente illum praesentium, obcaecati hic! Quos?</p>
+    <p>use <code>Console.writeLine</code></p>
+<pre>
+    hi
+     Hello
+       world
+</pre>
+</body>
+</html>
