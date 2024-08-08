@@ -1,0 +1,103 @@
+Introduction to Database and RDBMS
+
+ 1. What is a database ?
+     A database is an organized collection of structured data,typically managed by a Database Management System (DBMS).It stores data in tables with rows and columns, allowing for efficient data management, retrieval, and manipulation.
+
+ 2. Explain what a Relational Database Management System (RDBMS) ?
+    A Relational Database Management System (RDBMS) is a type of database management system that stores data in structured tables, which are related to each other through common fields. It uses SQL (Structured Query Language) to manage and manipulate the data
+
+ 3. What are the advantages using a database?
+•  Efficient Data Management: Databases allow for organized storage and quick retrieval of data.
+•  Data Integrity and Accuracy: Constraints and rules ensure data is accurate and consistent.
+•  Data Security: Databases provide access controls and encryption to protect sensitive information.
+•  Reduced Redundancy: Centralized storage minimizes duplicate data and saves space.
+•  Easy Data Backup and Recovery: Databases support regular backups and recovery options to prevent data loss.
+•  Scalability: Databases can handle increasing amounts of data and users efficiently.
+•  Complex Queries: SQL allows for powerful and flexible querying and reporting capabilities.
+
+ 4. Give some examples for common RDBMS systems ?
+•  MySQL: An open-source database known for its speed and reliability.
+•  PostgreSQL: An open-source database that supports advanced features and standards.
+•  Oracle Database: A commercial database with extensive features for enterprise environments.
+•  Microsoft SQL Server: A commercial database from Microsoft, widely used in enterprise settings.
+•  SQLite: A lightweight, embedded database often used in mobile and small-scale applications.
+
+
+
+ 5. What are the key characteristics of a Database Management System (DBMS)?
+•  Data Abstraction: Provides a simplified view of data, abstracting the complexities of physical storage.
+•  Data Independence: Allows changes to the data schema without affecting application programs.
+•  Data Integrity: Ensures accuracy and consistency of data through constraints and rules.
+•  Data Security: Controls access to data, ensuring that only authorized users can access or modify it.
+•  Reduced Redundancy: Minimizes duplication of data by centralizing storage and organization.
+•  Concurrency Control: Manages simultaneous data access by multiple users, preventing conflicts and ensuring consistency.
+•  Backup and Recovery: Offers mechanisms to backup data and restore it in case of failures or data loss.
+•  Transaction Management: Ensures reliable processing of transactions while maintaining ACID properties (Atomicity, Consistency, Isolation, Durability).
+
+
+
+Data Modeling
+
+ 6. Explain the different types of data models.
+•  Hierarchical Data Model: Organizes data in a tree-like structure with parent-child relationships. Each parent can have multiple children, but each child has only one parent. Example: An organizational chart.
+•  Network Data Model: Extends the hierarchical model by allowing more complex relationships. Data elements can have multiple parent and child relationships, forming a graph-like structure. Example: A transportation network with cities connected by various routes.
+•  Relational Data Model: Uses tables (relations) to represent data. Each table consists of rows and columns, and relationships between tables are established using keys. It is the most widely used model and is implemented by systems like MySQL and SQL Server.
+•  Object-Oriented Data Model: Represents data as objects, similar to object-oriented programming. Data and methods are encapsulated together, allowing for complex data representations and relationships. Example: A database for a CAD system where objects are designs with properties and behaviors.
+•  Document Data Model: Stores data in document formats, such as JSON or XML. Each document can have a different structure, providing flexibility and scalability. Example: NoSQL databases like MongoDB and CouchDB use this model.
+ 
+ 7. Explain the difference between relational and hierarchical data model and Relational Data Modeling
+Hierarchical Data Model: Organizes data in a tree structure with a parent-child relationship; rigid and less flexible.
+Relational Data Model: Organizes data into tables with rows and columns; allows flexible relationships through keys and SQL queries.
+
+ 8. Explain the components of relational data modeling
+•  Tables: Structures that store data in rows and columns. Each table represents an entity or relationship.
+•  Columns (Attributes): Define the data fields in a table. Each column has a data type and a name.
+•  Rows (Tuples): Individual records or instances in a table, representing a single entity or relationship.
+•  Primary Key: A unique identifier for each row in a table, ensuring that each record can be uniquely identified.
+•  Foreign Key: A column or set of columns in one table that refers to the primary key in another table, establishing relationships between tables.
+•  Relationships: Connections between tables, such as one-to-one, one-to-many, or many-to-many, defined using primary and foreign keys.
+•  Constraints: Rules that enforce data integrity, such as primary key constraints, foreign key constraints, and unique constraints.
+•  Normalization: The process of organizing data to reduce redundancy and improve data integrity through normalization forms (e.g., 1NF, 2NF, 3NF).
+
+9.How do you represent relationships in a relational model?
+In a relational model, relationships are represented using:
+•	Primary Keys: Unique identifiers for records in a table.
+•	Foreign Keys: Columns that refer to primary keys in other tables, establishing links between tables.
+Types of relationships include one-to-one, one-to-many, and many-to-many.
+
+Normalization
+10. Explain about normalization
+  Normalization organizes a database to reduce redundancy and improve data integrity by dividing it into multiple tables and defining relationships. It involves ensuring that each table contains atomic values (1NF), removing partial dependencies (2NF), and eliminating transitive dependencies (3NF).
+
+11. Explain about different levels of normalization
+•  First Normal Form (1NF): Ensures that each column contains atomic (indivisible) values and each record is unique.
+•  Second Normal Form (2NF): Achieved when the database is in 1NF and all non-key attributes are fully functionally dependent on the entire primary key, eliminating partial dependencies.
+•  Third Normal Form (3NF): Achieved when the database is in 2NF and all attributes are directly dependent on the primary key, with no transitive dependencies (i.e., non-key attributes should not depend on other non-key attributes).
+
+12. Explain functional dependency 
+Functional Dependency is a relationship between attributes in a database where the value of one attribute (or a set of attributes) determines the value of another attribute. It's a fundamental concept in database normalization that helps in understanding how data is related and ensuring data integrity.
+
+13. Explain partial and transitive dependencies
+A partial dependency occurs when a non-key attribute is dependent on only part of a composite primary key (a key consisting of multiple attributes), rather than on the whole key.
+
+Transactions
+
+14. Explain TCL language
+TCL (Transaction Control Language) manages database transactions to ensure integrity and consistency. Key commands include:
+•	COMMIT: Saves all changes made in the current transaction.
+•	ROLLBACK: Undoes all changes made in the current transaction.
+•	SAVEPOINT: Sets a point within a transaction to which you can roll back.
+
+15. Explain about ACID properties
+ACID properties are fundamental principles for ensuring reliable database transactions. They stand for:
+1.	Atomicity: Ensures that all operations within a transaction are completed successfully. If any operation fails, the entire transaction is rolled back, and no changes are made.
+2.	Consistency: Ensures that a transaction brings the database from one valid state to another, maintaining all predefined rules, constraints, and relationships.
+3.	Isolation: Ensures that transactions are executed independently of each other. Changes made in one transaction are not visible to other transactions until the transaction is committed.
+4.	Durability: Ensures that once a transaction is committed, its changes are permanent and survive any subsequent system failures or crashes.
+
+16. Explain BEGIN TRANSACTION , COMMIT , SAVEPOINT and ROLLBACK in transaction
+•  BEGIN TRANSACTION: Starts a new transaction. All subsequent operations are part of this transaction until it is completed.
+•  COMMIT: Saves all changes made during the transaction and makes them permanent.
+•  SAVEPOINT: Sets a point within the transaction to which you can later roll back, allowing partial undo.
+•  ROLLBACK: Undoes all changes made during the transaction or since a specified savepoint, reverting to the previous state.
+
