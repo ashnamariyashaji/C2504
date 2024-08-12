@@ -25,7 +25,7 @@ class YahkoopV2
                     {
                         break;
                     }
-                    if (salary < 0) //validation
+                    if (salary < 0)
                     {
                         Console.WriteLine("invalid salary");
                         continue;
