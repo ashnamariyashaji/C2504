@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PatientsAgeTest
+{
+    internal class Movie
+    {
+        public int Id;
+        public string Name;
+
+        public Movie(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public Movie()
+        {
+            Id = 0;
+            Name = "";
+        }
+    }
+
+    internal class Progarm
+    {
+        static void Main(string[] args)
+        {
+            Movie manjummelBoys = new Movie(1001, "manjummelBoys");
+            Movie aavesham = new Movie();
+            aavesham.Id = 1002;
+            aavesham.Name = "aavesham";
+
+            Console.WriteLine($"id={manjummelBoys.Id}, name={manjummelBoys.Name}");
+            Console.WriteLine($"id={aavesham.Id}, name={aavesham.Name}");
+            Console.ReadKey();
+        }
+
+    }
+}
