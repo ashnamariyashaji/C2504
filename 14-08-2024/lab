@@ -1,0 +1,92 @@
+Student mark
+---------------------------
+    public class Student
+    {
+        
+        public string name;
+        public int mark1;
+        public int mark2;
+        public int mark3;
+        public int mark4;
+
+        
+        public int CalculateTotalMarks()
+        {
+            return mark1 + mark2 + mark3 + mark4;
+        }
+
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Student student = new Student();
+            student.name = "Ashna";
+            student.mark1 = 80;
+            student.mark2 = 75;
+            student.mark3 = 85;
+            student.mark4 = 90;
+
+          
+            int totalMarks = student.CalculateTotalMarks();
+            Console.WriteLine($"Total Marks of {student.name}={ totalMarks}");
+        }
+    }
+}
+
+
+
+Calculator
+------------------------------------
+
+    class Calculator
+    {
+        public int num1;
+        public int num2;
+
+      
+        public void Add()
+        {
+            Console.WriteLine($"Addition {num1 + num2}");
+        }
+        public void Sub()
+        {
+            Console.WriteLine($"Subtraction {num1 - num2}");
+        }
+        public void Mul()
+        {
+            Console.WriteLine($"Multiplication {num1 * num2}");
+        }
+        public void Div()
+        {
+            if (num2 > 0)
+            {
+                Console.WriteLine($"Division  {num1 / num2}");
+            }
+            else
+            {
+                Console.WriteLine("error");
+            }
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Calculator cal = new Calculator
+            {
+                num1 = 10,
+                num2 = 5
+            };
+            
+                cal.Add(); 
+                cal.Sub(); 
+                 cal.Mul(); 
+                 cal.Div(); 
+               
+            
+            Console.ReadKey();
+        }
+    }
+}
