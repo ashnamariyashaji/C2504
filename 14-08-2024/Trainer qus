@@ -1,0 +1,39 @@
+public void Create(Trainer trainer)
+{
+    using (SqlConnection conn = new SqlConnection(connectionString))
+    {
+        string query = "INSERT INTO Trainers (Name, Place, Skill) VALUES (@Name, @Place, @Skill)";
+        SqlCommand cmd = new SqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@Name", trainer.name);
+        cmd.Parameters.AddWithValue("@Place", trainer.place);
+        cmd.Parameters.AddWithValue("@Skill", trainer.skill);
+
+        conn.Open();
+        cmd.ExecuteNonQuery();
+    }
+}
+
+
+
+1.how do you create the connection object?
+ans:Create the connection object by instantiating a new SqlConnection object and passing the connectionString to its constructor.
+
+2.how do you create the command object?
+ans:Create the command object by instantiating a SqlCommand with the SQL query and the connection object
+    
+3.how do you write the parameterizied sql statement or query?
+ans:Write a parameterized SQL statement by using placeholders (parameters) in the SQL query and then assigning values to those parameters.
+    Here,@Name, @Place, @Skill: These are placeholders (parameters) in the SQL query.
+    then use the SqlCommand.Parameters.AddWithValue method to assign actual values to these parameters.
+
+4.how will you pass the value to the query?
+ans:Pass values to the query by adding parameters to the SqlCommand object using the Parameters.AddWithValue method, where specify the parameter name and the value to be passed.
+    Here,@Name, @Place, @Skill: These are the parameter placeholders in the SQL query.
+    trainer.name, trainer.place, trainer.skill: These are the actual values passed from the Trainer object to the corresponding parameters in the SQL query.
+   
+5.how will you establish the connection to database?
+ans:SqlConnection conn = new SqlConnection(connectionString);: This creates a new SqlConnection object using the provided connection string, which contains the details needed to connect to the database (e.g., server name, database name, credentials).
+    conn.Open();: This opens the connection to the database so that you can execute commands.
+    
+6.how will you run the query?
+ans: Run the query by calling the ExecuteNonQuery() method on the SqlCommand object.
