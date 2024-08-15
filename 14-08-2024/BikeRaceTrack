@@ -1,4 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BikeRaceTrack
+{
 
 public class BikeRaceTrack
 {
@@ -47,4 +54,6 @@ public class TestBikeRaceTrack
             Console.WriteLine("Both tracks have the same length.");
         }
     }
+  }
 }
+
