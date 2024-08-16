@@ -2,7 +2,7 @@
 
     class MyUtil
     {
-        public static int FindGCD(int a, int b) //HCF
+        public static int FindGCD(int a, int b) 
         {
             while (a != b)
             {
@@ -36,7 +36,7 @@
 
         public RationalNumber(int _numerator, int _denominator)
         {
-            // throw ERR this.Denominator = 0
+            
             if (_denominator == 0)
             {
                 _denominator = 1;
