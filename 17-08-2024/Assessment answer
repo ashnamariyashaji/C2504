@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Test3
+{
+   public class HospitalStay
+    {
+        public string StayID { get; set; }
+        public int NumberOfDays { get; set; }
+
+        public HospitalStay(string stayID, int numberOfDays)
+        {
+            StayID = stayID;
+            NumberOfDays = numberOfDays;
+        }
+
+    
+        public bool Equals(HospitalStay other)
+        {
+            if (other == null)
+                return false;
+            return this.NumberOfDays == other.NumberOfDays;
+        }
+
+       
+        public bool NotEquals(HospitalStay other)
+        {
+            return !Equals(other);
+        }
+
+    
+        public bool GreaterThan(HospitalStay other)
+        {
+            if (other == null)
+                return false;
+            return this.NumberOfDays > other.NumberOfDays;
+        }
+
+        
+        public bool GreaterThanEquals(HospitalStay other)
+        {
+            if (other == null)
+                return false;
+            return this.NumberOfDays >= other.NumberOfDays;
+        }
+
+        
+        public bool LessThanEquals(HospitalStay other)
+        {
+            if (other == null)
+                return false;
+            return this.NumberOfDays <= other.NumberOfDays;
+        }
+
+        
+        public override string ToString()
+        {
+            return $"StayID: {StayID}, NumberOfDays: {NumberOfDays}";
+        }
+    }
+
+   
+    public class Program
+    {
+        public static void Main()
+        {
+            HospitalStay hs1 = new HospitalStay("HS001", 5);
+            HospitalStay hs2 = new HospitalStay("HS002", 7);
+
+            Console.WriteLine(hs1); 
+            Console.WriteLine(hs2);
+
+             Console.WriteLine($"Are the stays equal:  {hs1.Equals(hs2)}"); 
+             Console.WriteLine($"Is Stay 1 greater than Stay 2:  {hs1.GreaterThan(hs2)}"); 
+             Console.WriteLine($"Is Stay 1 less than or equal to Stay 2: {hs1.LessThanEquals(hs2)}");
+             Console.WriteLine($"Are stay not euqal: {(hs1.NotEquals(hs2))}");
+             Console.WriteLine($"Is Stay 1 Greater Than Equals to Stay 2: {(hs1.GreaterThanEquals(hs2))}");
+       
+            Console.ReadKey();
+        }
+    }
+
+
+}
