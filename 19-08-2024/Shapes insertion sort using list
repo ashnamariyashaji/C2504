@@ -1,0 +1,183 @@
+//Insertion sort using list
+
+
+namespace ShapesInsertion
+{
+  public abstract class Shape
+    {
+        // Abstract method to calculate the area
+        public abstract double CalculateArea();
+        public bool Gt(Shape other)
+        {
+            return this.CalculateArea() > other.CalculateArea();
+        }
+        public bool Eq(Shape other)
+        {
+            return this.CalculateArea() == other.CalculateArea();
+        }
+        public bool Lt(Shape other)
+        {
+            return (!Gt(other)) && (!Eq(other));
+        }
+
+        public abstract void Read();
+    }
+
+    public class Rectangle : Shape
+    {
+        public double Length { get; set; }
+        public double Width { get; set; }
+
+        public Rectangle(double length, double width)
+        {
+            Length = length;
+            Width = width;
+        }
+        public Rectangle()
+        {
+            Length = 0;
+            Width = 0;
+        }
+
+        // Override the CalculateArea method to return the area of the rectangle
+        public override double CalculateArea()
+        {
+            return Length * Width;
+        }
+
+        public override void Read()
+        {
+            Console.Write("Length: ");
+            Length = double.Parse(Console.ReadLine());
+            Console.Write("Width: ");
+            Width = double.Parse(Console.ReadLine());
+        }
+
+        public override string ToString()
+        {
+            return $"[Rectangle, Length = {Length}, Width = {Width}, Area = {CalculateArea()}]";
+        }
+    }
+
+    public class Circle : Shape
+    {
+        public double Radius { get; set; }
+
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+        public Circle()
+        {
+            Radius = 0;
+        }
+
+        // Override the CalculateArea method to return the area of the circle
+        public override double CalculateArea()
+        {
+            return Math.PI * Radius * Radius;
+        }
+
+        public override void Read()
+        {
+            Console.Write("Radius: ");
+            Radius = double.Parse(Console.ReadLine());
+        }
+
+        public override string ToString()
+        {
+            return $"[Circle, Radius = {Radius}, Area = {CalculateArea()}]";
+        }
+    }
+
+    enum ShapeType
+    {
+        Rectangle = 1,
+        Circle = 2
+    }
+
+    internal class Program
+    {
+        static void InsertionSort(List<Shape> shapes)
+        {
+            int N = shapes.Count;
+            for (int UI = 1; UI < N; UI++)
+            {
+                Shape target = shapes[UI];
+                int TI = UI;
+                int SI = UI - 1;
+                while (SI >= 0 && shapes[SI].Gt(target))
+                {
+                    shapes[SI + 1] = shapes[SI];
+                    TI = SI;
+                    SI--;
+                }
+                if (TI != UI)
+                {
+                    shapes[TI] = target;
+                }
+            }
+        }
+
+        static void ReadShapes(List<Shape> shapes)
+        {
+            for (int I = 0; I < shapes.Count; I++)
+            {
+                Console.Write("Shape Type (1-Rectangle, 2-Circle): ");
+                ShapeType shapeType = (ShapeType)int.Parse(Console.ReadLine());
+                switch (shapeType)
+                {
+                    case ShapeType.Rectangle:
+                        shapes[I] = new Rectangle();
+                        break;
+                    case ShapeType.Circle:
+                        shapes[I] = new Circle();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid shape type. Try again.");
+                        I--;
+                        continue;
+                }
+                shapes[I].Read();
+            }
+        }
+
+        static void PrintShapes(List<Shape> shapes)
+        {
+            foreach (Shape shape in shapes)
+            {
+                Console.Write($"{shape} ");
+            }
+            Console.WriteLine();
+        }
+
+        static void ProcessShapes()
+        {
+            Console.Write("Number of shapes: ");
+            int N = int.Parse(Console.ReadLine());
+            List<Shape> shapes = new List<Shape>(N);
+
+            // Initialize the list with default values
+            for (int i = 0; i < N; i++)
+            {
+                shapes.Add(null);
+            }
+
+            ReadShapes(shapes);
+            Console.WriteLine("Before sorting:");
+            PrintShapes(shapes);
+
+            // Sorting
+            InsertionSort(shapes);
+
+            Console.WriteLine("After sorting:");
+            PrintShapes(shapes);
+        }
+
+        static void Main(string[] args)
+        {
+            ProcessShapes();
+        }
+    }
+
+}
