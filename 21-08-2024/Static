@@ -1,0 +1,40 @@
+//static class,methods,properties
+
+
+public static class MathUtilities
+    {
+   
+        public static double Pi = 3.14159;
+
+        public static double Square(double number)
+        {
+            return number * number;
+        }
+
+        public static int Counter { get; private set; }
+
+        static MathUtilities()
+        {
+            Counter = 0;
+        }
+
+        public static void IncrementCounter()
+        {
+            Counter++;
+        }
+    }
+
+class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            Console.WriteLine(MathUtilities.Pi);
+
+            double result = MathUtilities.Square(5);
+            Console.WriteLine(result); 
+
+            MathUtilities.IncrementCounter();
+            Console.WriteLine(MathUtilities.Counter); 
+        }
+    }
