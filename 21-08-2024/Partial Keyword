@@ -1,0 +1,50 @@
+//Partial Keyword
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PartialKeyword
+{
+    public partial class Program1
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public void DisplayFullName()
+        {
+            Console.WriteLine($"{FirstName} {LastName}");
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PartialKeyword
+{
+    public partial class Program1
+    {
+        static void Main()
+        {
+            Program1 person = new Program1
+            {
+                FirstName = "John",
+                LastName = "Doe",
+               
+            };
+
+            person.DisplayFullName(); 
+               
+        }
+    }
+}
+
+
