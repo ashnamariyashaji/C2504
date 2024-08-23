@@ -1,0 +1,88 @@
+Read surgery id, doc name,doc duration(min) .find avg duration
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Surgery
+{
+
+    class Surgery
+    {
+        public string SurgeryID { get; set; }
+        public string DoctorName { get; set; }
+        public int SurgeryDuration { get; set; }
+
+        public Surgery(string surgeryID, string doctorName, int surgeryDuration)
+        {
+            SurgeryID = surgeryID;
+            DoctorName = doctorName;
+            SurgeryDuration = surgeryDuration;
+        }
+
+        public override string ToString()
+        {
+            return $"Surgery ID: {SurgeryID}, Doctors Name : {DoctorName}, Duration: {SurgeryDuration}";
+        }
+        class Program
+        {
+            static void Main(string[] args)
+
+            {
+                Surgery[] surgeries = new Surgery[5];
+                double totalDuration = 0;
+
+                for (int i = 0; i < surgeries.Length; i++)
+                {
+                    Console.Write($"Enter the surgeryID: ");
+                    string surgeryID = Console.ReadLine();
+
+                    Console.Write($"Enter the doctor name: ");
+                    string doctorName = Console.ReadLine();
+
+                    Console.Write("Enter the surgery duration: ");
+                    int surgeryDuration = int.Parse(Console.ReadLine());
+
+                    surgeries[i] = new Surgery(surgeryID, doctorName, surgeryDuration);
+                    totalDuration += surgeryDuration;
+                }
+                SelectionSort(surgeries);
+
+                double averageDuration = totalDuration / surgeries.Length;
+
+                Console.WriteLine($" the average duration of the surgeries is :{averageDuration}");
+                Console.WriteLine("Sorted list by name");
+                  foreach(Surgery surgery in surgeries )
+                {
+                    Console.WriteLine(surgery);
+                }
+            }
+
+            static void SelectionSort(Surgery[] array)
+            {
+                int n = array.Length;
+                for (int i = 0; i < n-1; i++)
+                {
+                    int minIndex = i;
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        if (string.Compare(array[j].DoctorName, array[minIndex].DoctorName, StringComparison.Ordinal) < 0)
+                        {
+                            minIndex = j;
+                        }
+                    }
+                    if (minIndex != i)
+                    {
+                        Surgery temp = array[i];
+                        array[i] = array[minIndex];
+                        array[minIndex] = temp;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
