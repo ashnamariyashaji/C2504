@@ -1,0 +1,141 @@
+Problem Statement: Advanced Inheritance and Interface in Patient Care System
+- Define a base class: `CareProvider` with properties:
+- `ProviderID` (integer), `ProviderName` (string)
+- Method: `ProvideCare()` (virtual, void)
+- Define an interface: `IEmergencyResponder` with the following method:
+- `RespondToEmergency()` (void)
+- Define a derived class: `Nurse` that inherits from `CareProvider` and implements `IEmergencyResponder`:
+- Additional Property: `ShiftTiming` (string)
+- Implement `ProvideCare()` to display care provided during the shift.
+- Implement `RespondToEmergency()` to handle emergency situations.
+- Define another derived class: `Doctor` that also inherits from `CareProvider` and implements `IEmergencyResponder`:
+- Additional Property: `Specialization` (string)
+- Implement `ProvideCare()` to display care based on specialization.
+- Implement `RespondToEmergency()` to handle critical emergency situations.
+- Tasks:
+1. Care Management:
+- Read details for N `careProviders` (both Nurses and Doctors).
+2. Emergency Response:
+- Implement a method to simulate an emergency and call `RespondToEmergency()` for each care provider.
+3. Care Providing:
+- Display details of care provided by each provider using the overridden `ProvideCare()` method.
+
+
+
+    public class Program
+    {
+        public class CareProvider
+        {
+            public int ProviderID { get; set; }
+            public string ProviderName { get; set; }
+
+            public virtual void ProvideCare() { }
+            
+        }
+
+        public interface IEmergencyResponder
+        {
+            void RespondToEmergency();
+        }
+
+        public class Nurse : CareProvider, IEmergencyResponder
+        {
+            public string ShiftTiming { get; set; }
+
+            public override void ProvideCare()
+            {
+                Console.WriteLine($"Nurse {ProviderName} is providing care during the {ShiftTiming} shift.");
+            }
+
+            public void RespondToEmergency()
+            {
+                Console.WriteLine($"Nurse {ProviderName} is responding to an emergency situation.");
+            }
+        }
+
+        public class Doctor : CareProvider, IEmergencyResponder
+        {
+            public string Specialization { get; set; }
+
+            public override void ProvideCare()
+            {
+                Console.WriteLine($"Doctor {ProviderName}, specializing in {Specialization}, is providing care.");
+            }
+
+            public void RespondToEmergency()
+            {
+                Console.WriteLine($"Doctor {ProviderName} is responding to a critical emergency situation.");
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the number of care providers: ");
+            int numberOfProviders = int.Parse(Console.ReadLine());
+
+            CareProvider[] careProviders = new CareProvider[numberOfProviders];
+
+            for (int i = 0; i < numberOfProviders; i++)
+            {
+                Console.Write("Enter type of care provider (Nurse/Doctor): ");
+                string type = Console.ReadLine();
+
+                CareProvider provider = null;
+
+                if (type.Equals("Nurse", StringComparison.OrdinalIgnoreCase))
+                {
+                    provider = new Nurse();
+                    Console.Write("Enter Shift Timing: ");
+                    ((Nurse)provider).ShiftTiming = Console.ReadLine();
+                }
+                else if (type.Equals("Doctor", StringComparison.OrdinalIgnoreCase))
+                {
+                    provider = new Doctor();
+                    Console.Write("Enter Specialization: ");
+                    ((Doctor)provider).Specialization = Console.ReadLine();
+                }
+
+                if (provider != null)
+                {
+                    Console.Write("Enter Provider ID: ");
+                    provider.ProviderID = int.Parse(Console.ReadLine());
+                    Console.Write("Enter Provider Name: ");
+                    provider.ProviderName = Console.ReadLine();
+
+                    careProviders[i] = provider;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid type entered.");
+                    i--; 
+                }
+            }
+
+            SimulateEmergency(careProviders);
+            DisplayCareProvided(careProviders);
+        }
+
+         static void SimulateEmergency(CareProvider[] careProviders)
+         {
+             Console.WriteLine("\nSimulating Emergency:");
+             foreach (var provider in careProviders)
+             {
+                 if (provider is IEmergencyResponder emergencyResponder)
+                 {
+                     emergencyResponder.RespondToEmergency();
+                 }
+             }
+         }
+       
+
+        static void DisplayCareProvided(CareProvider[] careProviders)
+        {
+            Console.WriteLine("\nCare Provided by Each Provider:");
+            foreach (var provider in careProviders)
+            {
+                provider.ProvideCare();
+            }
+        }
+    }
+
+}
