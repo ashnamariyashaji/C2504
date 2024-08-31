@@ -1,0 +1,334 @@
+//PrescriptionCost.cs
+
+    internal class PrescriptionCost
+    {
+        public int PrescriptionID { get; set; }
+        public string PatientName { get; set; }
+        public string Medication { get; set; }
+        public double Cost { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {PrescriptionID}, Patient: {PatientName}, Medication: {Medication}, Cost: ${Cost}";
+        }
+    }
+}
+
+
+//PrescriptionDAO.cs
+
+    internal class PrescriptionDAO
+    {
+        private static readonly ILog log = LogManager.GetLogger(typeof(PrescriptionDAO));
+        private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AssessmentWeek4;Integrated Security=True;";
+
+        // Create a new Prescription
+        public void Create(PrescriptionCost prescription)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Prescriptions (PatientName, Medication, Cost) VALUES (@PatientName, @Medication, @Cost)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                
+                cmd.Parameters.AddWithValue("@PatientName", prescription.PatientName);
+                cmd.Parameters.AddWithValue("@Medication", prescription.Medication);
+                cmd.Parameters.AddWithValue("@Cost", prescription.Cost);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    log.Info("Prescription created successfully.");
+                }
+                catch (SqlException ex)
+                {
+                    log.Error($"SQL Error: {ex.Message}");
+                }
+            }
+        }
+
+        // Read a Prescription by ID
+        public PrescriptionCost Read(int id)
+        {
+            PrescriptionCost prescription = null;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT PrescriptionID, PatientName, Medication, Cost FROM Prescriptions WHERE PrescriptionID = @ID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                try
+                {
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        prescription = new PrescriptionCost
+                        {
+                            PrescriptionID = reader.GetInt32(reader.GetOrdinal("PrescriptionID")),
+                            PatientName = reader.GetString(reader.GetOrdinal("PatientName")),
+                            Medication = reader.GetString(reader.GetOrdinal("Medication")),
+                            Cost = Convert.ToDouble(reader.GetDecimal(reader.GetOrdinal("Cost"))) 
+                        
+                    };
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    log.Error($"SQL Error: {ex.Message}");
+                }
+            }
+            return prescription;
+        }
+
+
+
+        // Update a Prescription
+        public void Update(PrescriptionCost prescription)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Prescriptions SET PatientName = @PatientName, Medication = @Medication, Cost = @Cost WHERE PrescriptionID = @ID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ID", prescription.PrescriptionID);
+                cmd.Parameters.AddWithValue("@PatientName", prescription.PatientName);
+                cmd.Parameters.AddWithValue("@Medication", prescription.Medication);
+                cmd.Parameters.AddWithValue("@Cost", prescription.Cost);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    log.Info("Prescription updated successfully.");
+                }
+                catch (SqlException ex)
+                {
+                    log.Error($"SQL Error: {ex.Message}");
+                }
+            }
+        }
+
+        // Delete a Prescription by ID
+        public void Delete(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Prescriptions WHERE PrescriptionID = @ID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    log.Info("Prescription deleted successfully.");
+                }
+                catch (SqlException ex)
+                {
+                    log.Error($"SQL Error: {ex.Message}");
+                }
+            }
+        }
+
+        // List all Prescriptions
+        public List<PrescriptionCost> ListAll()
+        {
+            List<PrescriptionCost> prescriptions = new List<PrescriptionCost>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT PrescriptionID, PatientName, Medication, Cost FROM Prescriptions";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                try
+                {
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        PrescriptionCost prescription = new PrescriptionCost
+                        {
+                            PrescriptionID = reader.GetInt32(reader.GetOrdinal("PrescriptionID")),
+                            PatientName = reader.GetString(reader.GetOrdinal("PatientName")),
+                            Medication = reader.GetString(reader.GetOrdinal("Medication")),
+                            Cost = Convert.ToDouble(reader.GetDecimal(reader.GetOrdinal("Cost")))
+                        };
+                        prescriptions.Add(prescription);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    log.Error($"SQL Error: {ex.Message}");
+                }
+            }
+            return prescriptions;
+        }
+    }
+}
+
+
+//PrescriptionMenu.cs
+
+    internal class PrescriptionMenu
+    {
+
+        public static void Menu()
+        {
+            PrescriptionUI ui = new PrescriptionUI();
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("\nPrescription Management System");
+                Console.WriteLine("1. Create Prescription");
+                Console.WriteLine("2. Read Prescription");
+                Console.WriteLine("3. Update Prescription");
+                Console.WriteLine("4. Delete Prescription");
+                Console.WriteLine("5. List All Prescriptions");
+                Console.WriteLine("6. Exit");
+
+                Console.Write("Choose an option: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        ui.CreatePrescription();
+                        break;
+                    case "2":
+                        ui.ReadPrescription();
+                        break;
+                    case "3":
+                        ui.UpdatePrescription();
+                        break;
+                    case "4":
+                        ui.DeletePrescription();
+                        break;
+                    case "5":
+                        ui.ListAllPrescriptions();
+                        break;
+                    case "6":
+                        running = false;
+                        Console.WriteLine("Exiting...");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
+    }
+
+//PrescriptionUI.cs
+
+    internal class PrescriptionUI
+    {
+        private static readonly ILog log = LogManager.GetLogger(typeof(PrescriptionUI));
+        private PrescriptionDAO prescriptionDAO = new PrescriptionDAO();
+
+        public void CreatePrescription()
+        {
+            Console.Write("Enter Patient Name: ");
+            string patientName = Console.ReadLine();
+            Console.Write("Enter Medication: ");
+            string medication = Console.ReadLine();
+            Console.Write("Enter Cost: ");
+            double cost = double.Parse(Console.ReadLine());
+
+            PrescriptionCost prescription = new PrescriptionCost
+            {
+                PrescriptionID = 0, // ID will be generated by the database
+                PatientName = patientName,
+                Medication = medication,
+                Cost = cost
+            };
+
+            prescriptionDAO.Create(prescription);
+            Console.WriteLine("Prescription created successfully.");
+        }
+
+        public void ReadPrescription()
+        {
+            Console.Write("Enter Prescription ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            PrescriptionCost prescription = prescriptionDAO.Read(id);
+            if (prescription != null)
+            {
+                Console.WriteLine(prescription);
+            }
+            else
+            {
+                Console.WriteLine("Prescription not found.");
+            }
+        }
+
+        public void UpdatePrescription()
+        {
+            Console.Write("Enter Prescription ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            PrescriptionCost prescription = prescriptionDAO.Read(id);
+            if (prescription != null)
+            {
+                Console.Write("Enter new Patient Name: ");
+                prescription.PatientName = Console.ReadLine();
+                Console.Write("Enter new Medication: ");
+                prescription.Medication = Console.ReadLine();
+                Console.Write("Enter new Cost: ");
+                prescription.Cost = double.Parse(Console.ReadLine());
+
+                prescriptionDAO.Update(prescription);
+                Console.WriteLine("Prescription updated successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Prescription not found.");
+            }
+        }
+
+        public void DeletePrescription()
+        {
+            Console.Write("Enter Prescription ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            prescriptionDAO.Delete(id);
+            Console.WriteLine("Prescription deleted successfully.");
+        }
+
+        public void ListAllPrescriptions()
+        {
+            List<PrescriptionCost> prescriptions = prescriptionDAO.ListAll();
+            foreach (var prescription in prescriptions)
+            {
+                Console.WriteLine(prescription);
+            }
+        }
+    }
+}
+
+
+// Program.cs
+
+internal class Program
+ {
+     static void Main(string[] args)
+     {
+      
+         PrescriptionMenu.Menu();
+         Console.ReadKey();
+     }
+ }
+
+
+//sql query
+
+CREATE DATABASE AssessmentWeek4
+CREATE TABLE Prescriptions
+(
+    PrescriptionID INT IDENTITY(1,1) PRIMARY KEY,
+    PatientName NVARCHAR(100) NOT NULL,
+    Medication NVARCHAR(100) NOT NULL,
+    Cost DECIMAL(10, 2) NOT NULL
+);
+
+
