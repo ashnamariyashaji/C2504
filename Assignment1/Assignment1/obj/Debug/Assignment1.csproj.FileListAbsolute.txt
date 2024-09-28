@@ -1,0 +1,13 @@
+C:\Users\2021510\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.exe.config
+C:\Users\2021510\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.exe
+C:\Users\2021510\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.pdb
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.csproj.AssemblyReference.cache
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.Crow.resources
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.Duck.resources
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.MainPageForm.resources
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.Peacock.resources
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.Properties.Resources.resources
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.csproj.GenerateResource.cache
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.csproj.CoreCompileInputs.cache
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.exe
+C:\Users\2021510\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.pdb
