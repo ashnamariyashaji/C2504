@@ -1,0 +1,4 @@
+C:\Users\2021510\source\repos\Example1\Example1\obj\Debug\Example1.csproj.AssemblyReference.cache
+C:\Users\2021510\source\repos\Example1\Example1\obj\Debug\Example1.Properties.Resources.resources
+C:\Users\2021510\source\repos\Example1\Example1\obj\Debug\Example1.csproj.GenerateResource.cache
+C:\Users\2021510\source\repos\Example1\Example1\obj\Debug\Example1.csproj.CoreCompileInputs.cache
