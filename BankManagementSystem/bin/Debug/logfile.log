@@ -1,0 +1,5 @@
+2024-10-06 16:26:07,468 [1] ERROR BankManagementSystem.Logger - Account Not Found , Please input valid account number
+2024-10-07 07:16:48,697 [1] INFO  BankManagementSystem.Logger - An account with acoount number 10001 has been created successfully
+2024-10-07 07:17:00,250 [1] INFO  BankManagementSystem.Logger - Account 10001 is updated successfully
+2024-10-07 07:17:18,727 [1] INFO  BankManagementSystem.Logger - Deposited 1000 rupees Successfully to account 10001
+2024-10-07 07:17:34,597 [1] INFO  BankManagementSystem.Logger - Withdrawed 500 rupees Successfully from account 10001
