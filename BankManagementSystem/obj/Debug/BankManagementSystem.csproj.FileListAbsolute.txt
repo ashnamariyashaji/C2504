@@ -31,3 +31,5 @@ C:\Users\2021510\Source\Repos\BankManagementSystem_sln\BankManagementSystem\obj\
 C:\Users\2021510\Source\Repos\BankManagementSystem_sln\BankManagementSystem\obj\Debug\Pages\AccountViewWindow.baml
 C:\Users\2021510\Source\Repos\BankManagementSystem_sln\BankManagementSystem\obj\Debug\Pages\LoginPageWindow.baml
 C:\Users\2021510\Source\Repos\BankManagementSystem_sln\BankManagementSystem\obj\Debug\BankMana.A2EB63A9.Up2Date
+C:\Users\2021510\Source\Repos\BankManagementSystem_sln\BankManagementSystem\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\2021510\Source\Repos\BankManagementSystem_sln\BankManagementSystem\obj\Debug\App.baml

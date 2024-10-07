@@ -86,6 +86,7 @@ namespace BankManagementSystem.ViewModels
                         button: MessageBoxButton.OK,
                         icon: MessageBoxImage.Information);
                 Logger.log.Info($"Deposited {Amount} rupees Successfully to account {AccountNumber}");
+                FormConfig.accountViewModel.UpdateTotalAssetsAndSavingsAssets();
                 this.AccountNumber = 0;
                 this.Amount = 0;
             }
@@ -103,5 +104,6 @@ namespace BankManagementSystem.ViewModels
                 Logger.log.Error(ex.Message);
             }
         }
+
     }
 }

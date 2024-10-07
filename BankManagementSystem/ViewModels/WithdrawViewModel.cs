@@ -85,6 +85,7 @@ namespace BankManagementSystem.ViewModels
                         button: MessageBoxButton.OK,
                         icon: MessageBoxImage.Information);
                 Logger.log.Info($"Withdrawed {Amount} rupees Successfully from account {AccountNumber}");
+                FormConfig.accountViewModel.UpdateTotalAssetsAndSavingsAssets();
                 this.AccountNumber = 0;
                 this.Amount = 0;
             }

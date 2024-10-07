@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,7 +70,7 @@ namespace BankManagementSystem.ViewModels
             {
                 try
                 {
-                    return _repo.ReadAllAccount();
+                    return _repo.ReadAll();
                 }
                 catch(AccountException ae)
                 {
@@ -80,6 +81,10 @@ namespace BankManagementSystem.ViewModels
             }
         }
 
+        //---//
+
+
+        
         /// <summary>
         /// Gets the command for creating a new account.
         /// </summary>
@@ -89,6 +94,13 @@ namespace BankManagementSystem.ViewModels
         /// Gets the command for updating an existing account.
         /// </summary>
         public ICommand UpdateCommand { get; }
+
+
+
+        /// <summary>
+        /// Gets the command for deleting an existing account.
+        /// </summary>
+        public ICommand DeleteCommand { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountViewModel"/> class.
@@ -113,6 +125,7 @@ namespace BankManagementSystem.ViewModels
             };
             CreateCommand = new RelayCommand(Create);
             UpdateCommand = new RelayCommand(Update);
+            DeleteCommand = new RelayCommand(Delete);
            
         }
 
@@ -174,9 +187,19 @@ namespace BankManagementSystem.ViewModels
                 return;
             }
 
+            var res = MessageBox.Show(messageBoxText: "Are you sure to Update?",
+                    caption: "Confirm",
+                    button: MessageBoxButton.YesNo,
+                    icon: MessageBoxImage.Question);
+
+            if (res != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             try
             {
-                _repo.UpdateAccount(this.SelectedAccount);
+                _repo.Update(this.SelectedAccount);
                 this.SelectedAccount = this.SelectedAccount;
                 var result = MessageBox.Show(messageBoxText: $"Account {SelectedAccount.AccountNumber} is updated successfully",
                         caption: "Alert",
@@ -196,8 +219,102 @@ namespace BankManagementSystem.ViewModels
             }
         }
 
+     
 
-        
+        /// <summary>
+        /// Deletes an existing account.
+        /// </summary>
+        public void Delete()
+        {
+            if (this.SelectedAccount == null)
+            {
+                var result = MessageBox.Show(messageBoxText: "Please select an account",
+                    caption: "Alert",
+                    button: MessageBoxButton.OK,
+                    icon: MessageBoxImage.Information);
+                return;
+            }
+
+            var res = MessageBox.Show(messageBoxText: "Are you sure to Delete?",
+                    caption: "Confirm",
+                    button: MessageBoxButton.YesNo,
+                    icon: MessageBoxImage.Question);
+
+            if (res != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+
+                _repo.Delete(this.SelectedAccount);
+                this.SelectedAccount = this.SelectedAccount;
+                var result = MessageBox.Show(messageBoxText: $"Account {SelectedAccount.AccountNumber} is marked as deleted successfully",
+                        caption: "Alert",
+                        button: MessageBoxButton.OK,
+                        icon: MessageBoxImage.Information);
+                Logger.log.Info($"Account {SelectedAccount.AccountNumber} is marked as deleted successfully");
+            }
+            catch (AccountException ae)
+            {
+                Logger.log.Error(ae.Message);
+            }
+        }
+
+        public decimal TotalAssets
+        {
+            get
+            {
+                decimal totalAssets = 0;
+                foreach (var account in Accounts)
+                {
+                    totalAssets += account.Balance;
+                }
+                return totalAssets;
+            }
+        }
+
+        public decimal SavingsAssets
+        {
+            get
+            {
+                decimal savingsAssets = 0;
+                foreach (var account in Accounts)
+                {
+                    if (account.Type == "savings")
+                    {
+                        savingsAssets += account.Balance;
+                    }
+                }
+                return savingsAssets;
+            }
+        }
+
+        public decimal CurrentAssets
+        {
+            get
+            {
+                decimal currentAssets = 0;
+                foreach (var account in Accounts)
+                {
+                    if (account.Type == "current")
+                    {
+                        currentAssets += account.Balance;
+                    }
+                }
+                return currentAssets;
+            }
+        }
+        public void UpdateTotalAssetsAndSavingsAssets()
+        {
+            onPropertyChanged("TotalAssets");
+            onPropertyChanged("SavingsAssets");
+            onPropertyChanged("CurrentAssets");
+        }
+
+
+
     }
 
 }

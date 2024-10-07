@@ -22,6 +22,9 @@ namespace BankManagementSystem.Pages
         public DashBoardWindow()
         {
             InitializeComponent();
+            this.DataContext = FormConfig.accountViewModel;
+
+
         }
 
         private void btnDeposit_Click(object sender, RoutedEventArgs e)
@@ -44,10 +47,14 @@ namespace BankManagementSystem.Pages
             FormConfig.withdrawWindow.Show();
         }
 
+        
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
             this.Hide();
         }
+
+        
     }
 }

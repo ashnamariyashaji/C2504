@@ -21,6 +21,9 @@ namespace BankManagementSystem.Databases
         /// </summary>
         private static AccountMemoryRepo _instance;
         private ObservableCollection<Account> accounts;
+        private decimal _totalAssets;
+        private decimal _savingsAssets;
+        private decimal _currentAssests;
 
         /// <summary>
         /// Initializes a new instance of the AccountMemoryRepo class.
@@ -92,6 +95,7 @@ namespace BankManagementSystem.Databases
             try
             {
                 accounts.Add(account);
+                FormConfig.accountViewModel.UpdateTotalAssetsAndSavingsAssets();
             }
             catch(AccountException ae)
             {
@@ -109,7 +113,7 @@ namespace BankManagementSystem.Databases
         /// </summary>
         /// <param name="account">The account to update.</param>
         /// <exception cref="AccountException">Thrown if the account does not exist.</exception>
-        public void UpdateAccount(Account account)
+        public void Update(Account account)
         {
             try
             {
@@ -117,6 +121,7 @@ namespace BankManagementSystem.Databases
                 if (existingAccount != null)
                 {
                     existingAccount.Address = account.Address;
+                    FormConfig.accountViewModel.UpdateTotalAssetsAndSavingsAssets();
                 }
                 else
                 {
@@ -135,7 +140,7 @@ namespace BankManagementSystem.Databases
         /// </summary>
         /// <returns>A collection of all accounts in the repository.</returns>
         /// <exception cref="AccountException">Thrown if an error occurs while reading accounts.</exception>
-        public ObservableCollection<Account> ReadAllAccount()
+        public ObservableCollection<Account> ReadAll()
         {
             try
             {
@@ -157,9 +162,25 @@ namespace BankManagementSystem.Databases
         /// </summary>
         /// <param name="acNo">The account number of the account to delete.</param>
         /// <param name="account">The account to delete.</param>
-        public void DeleteAccount(int acNo, Account account)
+        public void Delete(Account account)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var existingAccount = accounts.FirstOrDefault(a => a.AccountNumber == account.AccountNumber);
+                if (existingAccount != null)
+                {
+                    existingAccount.IsActive = false;
+                    FormConfig.accountViewModel.UpdateTotalAssetsAndSavingsAssets();
+                }
+                else
+                {
+                    throw new AccountException("Account doesn't exists");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -225,6 +246,45 @@ namespace BankManagementSystem.Databases
             }
             
         }
+
+        //--//
+        public decimal TotalAssets
+        {
+            get { return _totalAssets; }
+            private set
+            {
+                _totalAssets = value;
+                OnPropertyChanged("TotalAssets");
+            }
+        }
+        public decimal SavingsAssets
+        {
+            get { return _savingsAssets; }
+            private set
+            {
+                _savingsAssets = value;
+                OnPropertyChanged("SavingsAssets");
+            }
+        }
+
+        public decimal CurrentAssets
+        {
+            get { return _currentAssests; }
+            private set
+            {
+                _currentAssests = value;
+                OnPropertyChanged("CurrentAssets");
+            }
+        }
+
+
+
+        private void OnPropertyChanged(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        //--//
 
         public void CalculateInterestAndUpdateBalance()
         {
